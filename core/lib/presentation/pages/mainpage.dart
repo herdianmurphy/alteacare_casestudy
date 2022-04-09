@@ -40,7 +40,7 @@ class _MainPageState extends State<MainPage> {
     context.read<DoctorBloc>().add(FetchDoctorList());
   }
 
-  void searchDoctorByName(doctorName, hospitalName, specializationName) {
+  void searchDoctor(doctorName, hospitalName, specializationName) {
     setState(() {
       filteredDoctorList = doctorList
           .where((doctor) =>
@@ -52,27 +52,6 @@ class _MainPageState extends State<MainPage> {
           .toList();
     });
   }
-
-  // void searchDoctorByHospital(value, doctorName, specializationName) {
-  //   setState(() {
-  //     filteredDoctorList = doctorList
-  //         .where((doctor) =>
-  //             doctor.hospital![0].name!
-  //                 .toLowerCase()
-  //                 .contains(value.toLowerCase()) &&
-  //             doctor.name!.toLowerCase().contains(doctorName.toLowerCase()))
-  //         .toList();
-  //   });
-  // }
-  //
-  // void searchDoctorBySpecialization(value, doctorName, hospitalName) {
-  //   setState(() {
-  //     filteredDoctorList = doctorList
-  //         .where((doctor) => doctor.specialization!.name.toLowerCase().contains(value.toLowerCase()) &&
-  //         doctor.name!.toLowerCase().contains(doctorName.toLowerCase()))
-  //         .toList();
-  //   });
-  // }
 
   Widget _buildItem(BuildContext context, Doctor doctor) {
     return Card(
@@ -206,7 +185,7 @@ class _MainPageState extends State<MainPage> {
                           child: TextFormField(
                         controller: searchController,
                         onChanged: (value) {
-                          searchDoctorByName(
+                          searchDoctor(
                               value, hospitalName, specializationName);
                         },
                         decoration: const InputDecoration(
@@ -262,7 +241,7 @@ class _MainPageState extends State<MainPage> {
                             .toList(),
                         onChanged: (String? value) {
                           hospitalName = value;
-                          searchDoctorByName(searchController.text,
+                          searchDoctor(searchController.text,
                               hospitalName, specializationName);
                         },
                         isExpanded: true,
@@ -306,7 +285,7 @@ class _MainPageState extends State<MainPage> {
                             .toList(),
                         onChanged: (String? value) {
                           specializationName = value;
-                          searchDoctorByName(searchController.text,
+                          searchDoctor(searchController.text,
                               hospitalName, specializationName);
                         },
                         isExpanded: true,
